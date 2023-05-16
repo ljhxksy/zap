@@ -1,0 +1,125 @@
+/**********************************************************
+* Project 3: zap
+* CS 15
+* README
+* Author: Anh Hoang ahoang05
+*********************************************************/
+
+Program Purpose:
+----------------
+    - zap is used to compress and decompress text files using the Huffman 
+    coding algorithm.
+
+Acknowledgements: 
+-----------------
+    - TAs <3
+    - GeeksforGeeks and cplusplus and cppreference for explaining the STLs 
+    because i am a bit dumb
+    - CS15 File I/O handout
+    - Piazza. saved my life.
+    - I am very tired
+
+
+Files: 
+------
+    main.cpp:
+    - main function for zap.
+    
+    HuffmanCoder.h:
+    - define the interface of the HuffmanCoder class, which comprises the main 
+    logic of the Huffman coding algorithm.
+
+    HuffmanCoder.cpp:
+    - define the implementation of the HuffmanCoder class, which comprises the 
+    main logic of the Huffman coding algorithm.
+
+    unit_tests.h:
+    - unit testing for HuffmanCoder.
+
+    test_text.txt:
+    - a test file with only whitespaces and newlines.
+
+    test1.txt:
+    - a test file with one character type. which creates a tree where the root 
+    is also a leaf.
+
+    test2.txt:
+    - a test file with one character.
+
+    test3.txt:
+    - a test file where all characters have the same frequency.
+
+Compile/run:
+------------
+    - Compile using:
+        make
+    - Run executable with:
+        ./zap [zap | unzap] inputFile outputFile
+
+Data Structures:
+----------------
+    - The main data structure used in zap is a tree, specifically a Huffman 
+    tree, implemented by using std::priority_queue and std::map. The Huffman
+    tree is a type of optimal prefix code that is commonly used for lossless 
+    data compression. The idea is to assign variable-length codes to input 
+    characters, lengths of the assigned codes are based on the frequencies of 
+    corresponding characters, and the tree is built bottom up.
+
+    - The min-heap priority queue is used to build the Huffman tree by comparing
+    the frequency fields of the two provided HuffmanTreeNodes.
+
+    - The map structure is used to store the frequency and binary code of each 
+    character as key-value pairs.
+
+    - The pair, a special C++ data structure from the <utility> library that 
+    stores just two elements. pair<string, string>, contains both the serialized
+    tree and the binary string encoding. 
+
+Testing:
+--------
+Phase 1: I tested PhaseOne.o through unit_test:
+
+    - With count_freqs(), I tested by running the function with the given 
+    .txt files and the "test_text.txt" file I created, which contains only 
+    newlines and whitespaces.
+
+    - With serialize_tree(), I tested by running the function with 3 test trees 
+    I created, one with only one node (the root is also a leaf) and two normal 
+    full trees.
+
+    - With deserialize_tree(), I tested by printing out a the deserialized 
+    version of the serial tree I created in test_serialized_tree3(), and with 
+    the serial tree from figure 1, I tested by deserializing then printing it 
+    out, comparing it with makeFigure1Tree(), and asserting that treeEquals(). 
+    I commented assering out because calling makeFigure1Tree() reports valgrind
+    tho....
+
+
+Phase 2: 
+
+I made the functions tested temporarily public to test through unit_test: 
+    - With buildHuffmanTree(), I used the printTree() function to print out the 
+    tree built.
+
+    - To test generateCode(), I printed out the chars and their binary codes
+    in the same approach as printing char and frequency in the count_freqs 
+    function.
+
+    - To test decodeBinaryString(), I printed out the decoded text and compared 
+    them with the text from the original file.
+
+Testing through diff:
+    With test_text.txt, I tested zap with a file containing only whitespaces and
+    newlines.
+
+    With test1.txt, I tested zap with a file containing one character type (the
+    character 'b'), which means the root is also a leaf.
+
+    With test2.txt, I tested zap with a file containing one character
+
+    With test3.txt, I tested zap with a file containing letters with the same 
+    frequency
+
+Time spent on assignment:
+-------------------------
+    - 14erp
